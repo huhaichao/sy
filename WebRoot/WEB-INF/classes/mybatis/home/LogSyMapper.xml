@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="LogSyMapper">
+	
+	<sql id="logColumns">T_SY_LOG_ID,T_SY_USERNAME,T_SY_LOGIP,T_SY_TYPE,T_SY_OPERATION,T_SY_CREATEDATE,T_SY_BZ1,T_SY_BZ2</sql>
+
+	<resultMap type="SyLog" id="logResultMap">
+		<id column="T_SY_LOG_ID" property="tSyLogId"/>
+		<result column="T_SY_USERNAME" property="tSyUserName"/>
+		<result column="T_SY_LOGIP" property="tSyLogIp"/>
+		<result column="T_SY_TYPE" property="tSyType"/>
+		<result column="T_SY_OPERATION" property="tSyOperation"/>
+		<result column="T_SY_CREATEDATE" property="tSyCreateDate"/>
+		<result column="T_SY_BZ1" property="tSyBz1"/>
+		<result column="T_SY_BZ2" property="tSyBz2" />
+	</resultMap>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into t_sy_log(
+			T_SY_USERNAME,	
+			T_SY_LOGIP,	
+			T_SY_TYPE,	
+			T_SY_OPERATION,	
+			T_SY_CREATEDATE,	
+			T_SY_BZ1,	
+			T_SY_BZ2
+		) values (
+			#{T_SY_USERNAME},	
+			#{T_SY_LOGIP},	
+			#{T_SY_TYPE},	
+			#{T_SY_OPERATION},	
+			#{T_SY_CREATEDATE},	
+			#{T_SY_BZ1},	
+			#{T_SY_BZ2}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from t_sy_log
+		where 
+			T_SY_LOG_ID = #{T_SY_LOG_ID}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  t_sy_log
+			set 
+				T_SY_LOG_ID = #{T_SY_LOG_ID},
+				T_SY_USERNAME = #{T_SY_USERNAME},
+				T_SY_LOGIP = #{T_SY_LOGIP},
+				T_SY_TYPE = #{T_SY_TYPE},
+				T_SY_OPERATION = #{T_SY_OPERATION},
+				T_SY_CREATEDATE = #{T_SY_CREATEDATE},
+				T_SY_BZ1 = #{T_SY_BZ1},
+				T_SY_BZ2 = #{T_SY_BZ2},
+			T_SY_LOG_ID = T_SY_LOG_ID
+			where 
+				T_SY_LOG_ID = #{T_SY_LOG_ID}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			T_SY_LOG_ID,	
+			T_SY_USERNAME,	
+			T_SY_LOGIP,	
+			T_SY_TYPE,	
+			T_SY_OPERATION,	
+			T_SY_CREATEDATE,	
+			T_SY_BZ1,	
+			T_SY_BZ2
+		from 
+			t_sy_log
+		where 
+			T_SY_LOG_ID = #{T_SY_LOG_ID}
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				a.T_SY_LOG_ID,	
+				a.T_SY_USERNAME,	
+				a.T_SY_LOGIP,	
+				a.T_SY_TYPE,	
+				a.T_SY_OPERATION,	
+				a.T_SY_CREATEDATE,	
+				a.T_SY_BZ1,	
+				a.T_SY_BZ2
+		from 
+				t_sy_log a where 1=1 
+				<if test="pd.logName != null and pd.logName != ''">
+               		and a.T_SY_USERNAME like CONCAT(CONCAT('%', #{pd.logName}),'%')  or a.T_SY_TYPE like CONCAT(CONCAT('%', #{pd.logName}),'%')
+            	</if>
+            	<if test="pd.lastLoginStart!=null and pd.lastLoginStart!=''">
+					and a.T_SY_CREATEDATE &gt;= #{pd.lastLoginStart} 
+				</if>
+				<if test="pd.lastLoginEnd!=null and pd.lastLoginEnd!=''">
+					and a.T_SY_CREATEDATE &lt;= #{pd.lastLoginEnd} 
+				</if>
+				 order by a.T_SY_CREATEDATE
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+				a.T_SY_LOG_ID,	
+				a.T_SY_USERNAME,	
+				a.T_SY_LOGIP,	
+				a.T_SY_TYPE,	
+				a.T_SY_OPERATION,	
+				a.T_SY_CREATEDATE,	
+				a.T_SY_BZ1,	
+				a.T_SY_BZ2
+		from 
+				t_sy_log a order by a.T_SY_CREATEDATE
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from t_sy_log
+		where 
+			T_SY_LOG_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+</mapper>

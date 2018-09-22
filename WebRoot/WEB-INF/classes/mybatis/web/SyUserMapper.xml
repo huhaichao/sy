@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SyUserMapper">
+	<sql id="userColumns">T_SY_USER_ID,T_SY_USERNAME,T_SY_PASSWORD,T_SY_NICKNAME,T_SY_PHONE,T_SY_SEX,T_SY_ACCOUNT</sql>
+
+	<resultMap type="User" id="userResultMap">
+		<id column="T_SY_USER_ID" property="tSyUserId"/>
+		<result column="T_SY_USERNAME" property="tSyUsername"/>
+		<result column="T_SY_PASSWORD" property="tSyPassword"/>
+		<result column="T_SY_PHONE" property="tSyPhone"/>
+		<result column="T_SY_USER_STATUS" property="tSyUserStatus"/>
+		<result column="T_SY_ACCOUNT_STATE" property="tSyAccountState"/>
+		<result column="T_SY_LASTLOGINTIME" property="tSyLastlogintime"/>
+		<result column="T_SY_ISONLINE" property="tSyIsonline"/>
+		<result column="T_SY_MAIL" property="tSyMail"/>
+		<result column="T_SY_SEX" property="tSySex"/>
+		<result column="T_SY_CARDID" property="tSyCardid" />
+	    <result column="T_SY_NICKNAME" property="tSyNickname" />
+	    <result column="T_SY_DATEOFBIRTH" property="tSyDateofbirth" />
+	    <result column="T_SY_ACCOUNT" property="tSyAccount" />
+	</resultMap>
+	
+	<!-- 判断用户名和密码 -->
+	<select id="getUserInfo" parameterType="pd" resultType="pd" useCache="false">
+		select * from t_sy_user 
+		where 1=1
+		<!--<if test="T_SY_PHONE!=null and T_SY_PASSWORD!=null">-->
+		and T_SY_PHONE = #{tSyPhone} and T_SY_PASSWORD=#{tSyPassword} 
+		and T_SY_ACCOUNT_STATE=0  and  T_SY_USER_STATUS=0
+		<!--</if>-->
+		
+	</select>	
+	
+	<!--更新最后一次登录时间 -->
+	<update id="updateLastLogin" parameterType="User">
+		update t_sy_user set 
+		T_SY_LASTLOGINTIME=#{tSyLastlogintime} 
+		where T_SY_PHONE=#{tSyPhone}
+	</update>
+	
+	<!-- 通过手机号获取数据 -->
+	<select id="findByPhone" parameterType="pd" resultType="pd" useCache="false">
+		select 
+			*
+		from 
+			t_sy_user
+		where 
+			T_SY_PHONE = #{tSyPhone}
+	</select>
+
+	<!-- 修改 -->
+	<update id="editU" parameterType="pd" flushCache="false">
+		update  t_sy_user set
+				T_SY_USERNAME 			= #{tSyUsername},
+				T_SY_PHONE 				= #{tSyPhone},
+				T_SY_IMGPATH			= #{tSyImgpath},
+				T_SY_SEX				= #{tSySex},
+				T_SY_CARDID				= #{tSyCardid},
+				T_SY_NICKNAME			= #{tSyNickname},
+				T_SY_DATEOFBIRTH		= #{tSyDateofbirth},
+				T_SY_MAIL				= #{tSyMail},
+				T_SY_BZ1				= #{tSyBz1}
+			where 
+				T_SY_USER_ID = #{tSyUserId} 
+				and T_SY_ACCOUNT_STATE=0  and  T_SY_USER_STATUS=0
+	</update>
+	
+		<!-- 按手机号修改 -->
+	<update id="editByPhone" parameterType="pd" flushCache="false">
+		update  t_sy_user set
+				T_SY_USERNAME 			= #{tSyUsername},
+				T_SY_IMGPATH			= #{tSyImgpath},
+				T_SY_SEX				= #{tSySex},
+				T_SY_CARDID				= #{tSyCardid},
+				T_SY_NICKNAME			= #{tSyNickname},
+				T_SY_DATEOFBIRTH		= #{tSyDateofbirth},
+				T_SY_MAIL				= #{tSyMail},
+				T_SY_BZ1				= #{tSyBz1}
+			where 
+				T_SY_PHONE = #{tSyPhone} 
+				and T_SY_ACCOUNT_STATE=0  and  T_SY_USER_STATUS=0
+	</update>
+	<update id="updateByPhone" parameterType="pd" flushCache="false">
+		update t_sy_user set
+		<if test="T_SY_USERNAME!=null">
+			T_SY_USERNAME = #{tSyUsername},
+		</if>
+		<if test="T_SY_USERNAME!=null">
+			T_SY_IMGPATH = #{tSyImgpath},
+		</if>
+			T_SY_SEX = #{tSySex},
+			<if test="T_SY_USERNAME!=null">
+				T_SY_CARDID = #{tSyCardid},
+			</if>
+			<if test="T_SY_USERNAME!=null">
+				T_SY_NICKNAME = #{tSyNickname},
+			</if>
+			<if test="T_SY_USERNAME!=null">
+				T_SY_DATEOFBIRTH = #{tSyDateofbirth},
+			</if>
+			<if test="T_SY_USERNAME!=null">
+				T_SY_MAIL = #{tSyMail},
+			</if>
+			<if test="T_SY_USERNAME!=null">
+				T_SY_BZ1 = #{tSyBz1}
+			</if>
+			where
+			T_SY_PHONE = #{tSyPhone}
+			and T_SY_ACCOUNT_STATE=0 and T_SY_USER_STATUS=0
+	</update>
+	
+	<!-- 注册新用户  -->
+   <insert id="insertUser" parameterType="pd">
+         <!-- oracle等不支持id自增长的，可根据其id生成策略，先获取id           
+        <selectKey resultType="int" order="BEFORE" keyProperty="id">
+              select seq_user_id.nextval as id from dual
+        </selectKey>        
+        -->         
+        <!-- mysql插入数据后，获取id
+        <selectKey keyProperty="id" resultType="int" order="AFTER" >
+               SELECT LAST_INSERT_ID() as id
+        </selectKey>
+         -->
+           insert into t_sy_user(T_SY_PHONE, T_SY_PASSWORD,T_SY_USER_STATUS, T_SY_ACCOUNT_STATE,T_SY_DEL_STATUS,T_SY_USERNAME,T_SY_NICKNAME,T_SY_SEX,T_SY_ACCOUNT) 
+               values(#{tSyPhone}, #{tSyPassword}, 0, 0,0,#{tSyPhone}, #{tSyPhone},0,#{tSyAccount})
+   </insert>
+   
+   <!-- 修改密码 -->
+   	<update id="updatePassword" parameterType="pd" flushCache="false">
+		update t_sy_user set T_SY_PASSWORD = #{tSyPassword} 
+			 where T_SY_PHONE = #{tSyPhone} and T_SY_ACCOUNT_STATE=0 and T_SY_USER_STATUS=0
+	</update>
+   
+   
+	<!-- 
+	<update id="updateByPhone" parameterClass="pd">
+	     update t_sy_user set
+	     <isNotEmpty prepend=" " property="T_SY_USERNAME"> T_SY_USERNAME= #{tSyUsername},</isNotEmpty>
+	     <isNotEmpty prepend=" " property="T_SY_IMGPATH">T_SY_IMGPATH=#{tSyImgpath},</isNotEmpty>
+	     <isNotEmpty prepend=" " property="T_SY_MAIL">T_SY_MAIL=#{tSyMail},</isNotEmpty>
+	     <isNotEmpty prepend=" " property="T_SY_DATEOFBIRTH">T_SY_DATEOFBIRTH=#{tSyDateofbirth},</isNotEmpty>
+	     <isNotEmpty prepend=" " property="T_SY_DATEOFBIRTH">T_SY_CARDID=#{tSyCardid},</isNotEmpty>
+	        T_SY_NICKNAME=#{tSyNickname},
+            T_SY_BZ1= #{tSyBz1}
+			T_SY_USERNAME=#tSyUsername#,
+			T_SY_SEX=#tSySex#
+			where T_SY_PHONE=#tSyPhone#
+	</update>
+	 -->   
+     
+	<!-- 判断用户名和密码 
+	<select id="getUserInfo" parameterType="pd" resultType="pd" useCache="false">
+		select * from t_sy_user 
+		where 1=1
+		<if test="USERNAME != null and PASSWORD != null">
+	  	and	(
+	  		(USERNAME = #{USERNAME} and PASSWORD = #{PASSWORD})
+	  		or
+	  		(EMAIL = #{USERNAME} and PASSWORD = #{PASSWORD})
+	  		or
+	  		(NUMBER = #{USERNAME} and PASSWORD = #{PASSWORD})
+	  		)
+		</if>
+		<if test="USER_ID != null and USER_ID != ''">
+		and USER_ID = #{USER_ID}
+		</if>
+	</select>
+   -->
+</mapper>

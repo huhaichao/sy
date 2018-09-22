@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<title>拾缘科技_发布拾物</title>
+		<meta name="description" content="拾缘科技平台">
+		<meta name="author" content="htmlcoder.me">
+
+		<!-- Mobile Meta -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="../../favicon.ico">
+
+		<!-- Web Fonts -->
+		 
+		 
+
+		<!-- Bootstrap core CSS -->
+		<link href="../../static/web/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+		<!-- Font Awesome CSS -->
+		<link href="../../static/web/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+		<!-- Fontello CSS -->
+		<link href="../../static/web/fonts/fontello/css/fontello.css" rel="stylesheet">
+
+		<!-- Plugins -->
+		<link href="../../static/web/plugins/magnific-popup/magnific-popup.css" rel="stylesheet">
+		<link href="../../static/web/css/animations.css" rel="stylesheet">
+		<link href="../../static/web/plugins/owl-carousel/owl.carousel.css" rel="stylesheet">
+
+		<!-- iDea core CSS file -->
+		<link href="../../static/web/css/style.css" rel="stylesheet">
+
+		<!-- Color Scheme (In order to change the color scheme, replace the red.css with the color scheme that you prefer)-->
+		<link href="../../static/web/css/skins/orange.css" rel="stylesheet">
+
+		<!-- Custom css --> 
+		<link href="../../static/web/css/custom.css" rel="stylesheet">
+        
+        <!-- 侧边导航 start -->
+		<link href="../../static/web/css/zzsc.css" rel="stylesheet" type="text/css"/>
+		<script type="text/javascript" src="../../static/web/js/popwin.js"></script> 
+		<!-- 侧边导航 end --> 
+		<link href="../../static/web/bootstrap-datepicker.css" rel="stylesheet" type="text/css"/>
+		<style type="text/css">
+		    #txt_dsdd{
+		         width:500px;
+		         height:35px;
+		    }
+		    
+		    #allmap {width:100%;height:400px; overflow: hidden; margin:0;font-family:"微软雅黑";
+		    }
+	       /* #project-1{
+	           position:absolute;
+               z-index:10000;
+	        }  */
+	        /* #searchResultPanel{
+	           position:absolute;
+               z-index:1055; 
+	        } */
+	        /*  百度搜索下拉框 */
+	        .tangram-suggestion-main{
+	           position:absolute;
+               z-index:1055; 
+	        }
+	    </style>
+		
+	</head>
+
+	<!-- body classes: 
+			"boxed": boxed layout mode e.g. <body class="boxed">
+			"pattern-1 ... pattern-9": background patterns for boxed layout mode e.g. <body class="boxed pattern-1"> 
+	-->
+	<body>
+    	<div id="moquu_wxin" class="moquu_wxin"><a href="../../static/web/javascript:alert('iOS');">iOS<div class="moquu_wxinh"></div></a></div>
+		<div id="moquu_wshare" class="moquu_wshare"><a href="../../static/web/javascript:alert('android');">android<div class="moquu_wshareh"></div></a></div>
+		<div id="moquu_wmaps" class="moquu_wmaps"><a href="../../static/web/javascript:alert('电话');">电话<div class='moquu_wmapsh'></div></a></div>
+		<a id="moquu_top" href="../../static/web/#header-top-second"></a>
+		<!-- scrollToTop -->
+		<!-- ================ -->
+		<div class="scrollToTop"><i class="icon-up-open-big"></i></div>
+
+		<!-- page wrapper start -->
+		<!-- ================ -->
+		<div class="page-wrapper">
+
+			<!-- header-top start -->
+			<div class="header-top">
+				<div class="container">
+					<div class="row">
+                    	<div class="col-xs-2 col-sm-6">&nbsp;
+                        </div>
+						<div class="col-xs-10 col-sm-6">
+							<!-- header-top-second start -->
+							<!-- ================ -->
+							<div id="header-top-second"  class="clearfix" style=" text-align:right;">
+								<!-- header top dropdowns start -->
+								<!-- ================ -->
+								<div class="header-top-dropdown">
+									<div class="btn-group dropdown">
+										<button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-search"></i> 搜索</button>
+										<ul class="dropdown-menu dropdown-menu-right dropdown-animation">
+											<li>
+												<form role="search" class="search-box">
+													<div class="form-group has-feedback">
+														<input type="text" class="form-control" placeholder="Search">
+														<i class="fa fa-search form-control-feedback"></i>
+													</div>
+												</form>
+											</li>
+										</ul>
+									</div>
+                                   <div class="btn-group dropdown">
+										<button type="button" class="btn dropdown-toggle"><i class="glyphicon glyphicon-phone"></i>&nbsp;<a href="../../static/web/login.html">登录</a></button>
+									</div>
+									<div class="btn-group dropdown">
+										<button type="button" class="btn dropdown-toggle"><i class="glyphicon glyphicon-user"></i>&nbsp;<a href="../../static/web/register.html">注册</a></button>
+									</div>
+									<div class="btn-group dropdown">
+										<button type="button" class="btn dropdown-toggle"><i class="fa fa-user"></i>&nbsp;<a href="../../static/web/personal.html">马小云</a></button>
+									</div>
+									<div class="btn-group dropdown">
+										<button type="button" class="btn dropdown-toggle"><i class="glyphicon glyphicon-off"></i>&nbsp;<a href="../../static/web/login.html">退出</a></button>
+									</div>
+								</div>
+								<!--  header top dropdowns end -->
+							</div>
+							<!-- header-top-second end -->
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- header-top end -->
+
+			<!-- header start (remove fixed class from header in order to disable fixed navigation mode) -->
+			<!-- ================ --> 
+			<header class="header fixed header-small clearfix">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3">
+							<!-- header-left start -->
+							<!-- ================ -->
+							<div class="header-left clearfix">
+								<!-- logo -->
+								<div class="logo">
+									<a href="../../static/web/index.html"><img id="logo" src="../../static/web/images/logo_red.png" alt="iDea"></a>
+								</div>
+								<!-- name-and-slogan -->
+								<div class="site-slogan">
+									irevest_拾缘科技
+								</div>
+							</div>
+							<!-- header-left end -->
+						</div>
+						<div class="col-md-9">
+							<!-- header-right start -->
+							<!-- ================ -->
+							<div class="header-right clearfix">
+								<!-- main-navigation start -->
+								<!-- ================ -->
+								<div class="main-navigation animated">
+									<!-- navbar start -->
+									<!-- ================ -->
+									<nav class="navbar navbar-default" role="navigation">
+										<div class="container-fluid">
+											<!-- Collect the nav links, forms, and other content for toggling -->
+											<div class="collapse navbar-collapse" id="navbar-collapse-1">
+												<ul class="nav navbar-nav navbar-right">
+													<li>
+														<a href="../../static/web/index.html">首页</a>
+													</li>
+                                                    <li class="dropdown">
+														<a href="../../static/web/#" class="dropdown-toggle" data-toggle="dropdown">统计</a>
+                                                        <ul class="dropdown-menu">
+															<li><a href="../../static/web/#">注册用户量</a></li>
+                                                            <li><a href="../../static/web/#">在线用户量</a></li>
+														</ul>
+													</li>
+													<li class="dropdown">
+														<a href="../../static/web/#" class="dropdown-toggle" data-toggle="dropdown">浏览</a>
+														<ul class="dropdown-menu">
+															<li><a href="../../static/web/people_list.html">寻人列表</a></li>
+															<li><a href="../../static/web/pickup_list.html">拾物列表</a></li>
+															<li><a href="../../static/web/loster_list.html">失物列表</a></li>
+														</ul>
+													</li>
+                                                    <li class="dropdown">
+														<a href="../../static/web/#" class="dropdown-toggle" data-toggle="dropdown">发布</a>
+														<ul class="dropdown-menu">
+                                                            <li><a href="../../static/web/pub_people_info.html">发布寻人</a></li>
+                                                            <li><a href="../../static/web/pub_pickup_info.html">发布拾物</a></li>
+                                                            <li><a href="../../static/web/pub_lost_info.html">发布失物</a></li>
+														</ul>
+													</li>
+                                                    <li class="dropdown">
+														<a href="../../static/web/#" class="dropdown-toggle" data-toggle="dropdown">用户</a>
+														<ul class="dropdown-menu">
+                                                                	<li><a href="../../static/web/install_perinfo.html">个人信息</a></li>
+																	<li><a href="../../static/web/install_passmodify.html">密码修改</a></li>
+																	<li><a href="../../static/web/install_credit.html">信用积分</a></li>
+																	<li><a href="../../static/web/install_wallet.html">我的钱包</a></li>
+                                                                    <li><a href="../../static/web/install_coupon.html">我的优惠券</a></li>
+                                                                    <li><a href="../../static/web/install_law.html">法律条文</a></li>
+																	<li><a href="../../static/web/install_fault.html">故障反馈</a></li>
+																	<li><a href="../../static/web/install_invite.html">邀请好友</a></li>
+                                                                    <li><a href="../../static/web/install_guide.html">用户指南</a></li>
+																	<li><a href="../../static/web/install_version.html">版本信息</a></li>
+																</ul>
+													</li>
+                                                    <li class="dropdown">
+														<a href="../../static/web/#" class="dropdown-toggle" data-toggle="dropdown">消息</a>
+														<ul class="dropdown-menu">
+                                                            <li><a href="../../static/web/info_pub_list.html">我的发布消息</a></li>
+                                                            <li><a href="../../static/web/info_help_list.html">我的帮助消息</a></li>
+                                                            <li><a href="../../static/web/info_sys_list.html">我的系统消息</a></li>
+                                                            <li><a href="../../static/web/info_collect_list.html">我的收藏消息</a></li>
+														</ul>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</nav>
+									<!-- navbar end -->
+								</div>
+								<!-- main-navigation end -->
+							</div>
+							<!-- header-right end -->
+						</div>
+					</div>
+				</div>
+			</header>
+			<!-- header end -->
+
+			<!-- page-intro start-->
+			<!-- ================ -->
+			<div class="page-intro">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<ol class="breadcrumb">
+								<li><i class="fa fa-home pr-10"></i><a href="../../static/web/index-3.html">首页</a></li>
+								<li class="active">发布拾物</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- page-intro end -->
+
+			<!-- main-container start -->
+			<!-- ================ -->
+			<section class="main-container">
+
+				<div class="container">
+					<div class="row">
+                    	<!-- sidebar start -->
+						<aside class="col-md-3">
+                        	<div class="sidebar">
+								<div class="block clearfix">
+									<h3 class="title">发布中心</h3>
+									<div class="separator"></div>
+									<nav>
+										<ul class="nav nav-pills nav-stacked">
+                                        	<li><a href="pub_people_info.html">发布寻人</a></li>
+											<li class="active"><a href="pub_pickup_info.html">发布拾物</a></li>
+											<li><a href="pub_lost_info.html">发布失物</a></li>
+										</ul>
+									</nav>
+								</div>
+							</div>
+                            <div class="block clearfix">
+									<h3 class="title">广告位</h3>
+									<div class="separator"></div>
+									<div class="image-box">
+										<div class="overlay-container">
+											<img src="../../static/web/images/blog-sidebar.jpg" alt="">
+											<div class="overlay">
+												<div class="overlay-links">
+													<a href="../../static/web/blog-post.html"><i class="fa fa-link"></i></a>
+													<a href="../../static/web/images/blog-sidebar.jpg" class="popup-img-single" title="image title"><i class="fa fa-search-plus"></i></a>
+												</div>
+											</div>
+										</div>
+										<div class="image-box-body">
+											<h3 class="title"><a href="../../static/web/blog-post.html">标题</a></h3>
+											<p>广告招商中...</p>
+											<a href="../../static/web/blog-post.html" class="link"><span>了解更多</span></a>
+										</div>
+									</div>
+								</div>
+								<div class="block clearfix">
+									<h3 class="title">标签</h3>
+									<div class="separator"></div>
+									<div class="tags-cloud">
+										<div class="tag">
+											<a href="../../static/web/#">手机</a>
+										</div>
+										<div class="tag">
+											<a href="../../static/web/#">电脑</a>
+										</div>
+										<div class="tag">
+											<a href="../../static/web/#">钥匙</a>
+										</div>
+										<div class="tag">
+											<a href="../../static/web/#">自行车</a>
+										</div>
+										<div class="tag">
+											<a href="../../static/web/#">电瓶</a>
+										</div>
+										<div class="tag">
+											<a href="../../static/web/#">书包</a>
+										</div>
+										<div class="tag">
+											<a href="../../static/web/#">电瓶车</a>
+										</div>
+										<div class="tag">
+											<a href="../../static/web/#">摩托车</a>
+										</div>
+										<div class="tag">
+											<a href="../../static/web/#">键盘</a>
+										</div>
+										<div class="tag">
+											<a href="../../static/web/#">书本</a>
+										</div>
+									</div>
+								</div>
+								<div class="block clearfix">
+									<form role="search">
+										<div class="form-group has-feedback">
+											<input type="text" class="form-control" placeholder="搜索">
+											<i class="fa fa-search form-control-feedback"></i>
+										</div>
+									</form>
+								</div>
+						</aside>
+						<!-- sidebar end -->
+
+						<!-- main start -->
+						<!-- ================ -->
+						<div class="main col-md-9">
+							<!-- page-title start -->
+							<!-- ================ -->
+							<h1 class="page-title margin-top-clear">发布</h1>
+							<!-- page-title end -->
+							<div class="space-bottom"></div>
+							<fieldset>
+								<legend>失物信息</legend>
+								<form role="form" class="form-horizontal" id="payment-information">
+									<div class="row">
+										<div class="col-lg-9">
+											<div class="form-group">
+												<label for="paymentFirstName" class="col-md-3 control-label">物品姓名<span style="color:#FF0000">*</span></label>
+												<div class="col-md-9">
+													<div class="row">
+														<div class="col-md-4">
+															<input type="text" class="form-control" placeholder="请输入物品名称！" id="txt_wpname" style=" width:500px; height:35px;"/>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-md-3 control-label">物品类型<span style="color:#FF0000">*</span></label>
+												<div class="col-md-9">
+													<div class="row">
+														<div class="col-md-4">
+															<select class="form-control" name="sel_wplx" id="sel_wplx" style=" width:500px; height:35px;">
+																<option value="0" selected="selected">电子产品</option>
+																<option value="1">生活用品</option>
+															</select>															
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-md-3 control-label">拾到日期<span style="color:#FF0000">*</span></label>
+												<div class="col-md-9">
+													<div class="row">
+														<div class="col-md-4">
+															<!-- <input type="text" class="form-control" placeholder="请输入拾到日期！" id="txt_date" style=" width:500px; height:35px;"/> -->
+														    <input class="datepicker" placeholder="请选择日期" id="txt_date" style="width:220px; height:35px;">
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-md-3 control-label">拾到地点<span style="color:#FF0000">*</span></label>
+												<div class="col-md-9">
+													<div class="row">
+														<div class="col-xs-6 col-sm-2">
+															<input type="text" class="form-control" id="txt_dsdd" placeholder="请输入拾到地点！"  data-toggle="modal" data-target="#project-1" style=" width:500px; height:35px;"/>
+															<input type="text" class="form-control" id="txt_dsdd_x"  style="display:none;"/>
+															<input type="text" class="form-control" id="txt_dsdd_y"  style="display:none;"/>
+														</div>
+													</div>
+												</div>
+												<div class="modal fade" id="project-1" tabindex="-1" role="dialog" aria-labelledby="project-1-label" aria-hidden="true">
+												   <div class="modal-dialog modal-lg">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+															<h4 class="modal-title" id="project-1-label">拾到地点</h4>
+														</div>
+														<div class="modal-body">
+															 <div id="r-result">搜索:<input type="text" id="suggestId" size="50" style="width:200px;" />
+															 </div>
+															 <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:200px;height:auto; display:none;"></div>
+															 <div id="allmap"></div>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-sm btn-default" onclick="confirmAddress()">确认</button>
+															<button type="button" id="closeBtn" class="btn btn-sm btn-default" data-dismiss="modal">返回</button>
+														</div>
+													</div>
+												</div>
+									         </div>
+									<!-- Modal end -->
+											</div>
+                                            <div class="form-group">
+												<label class="col-md-3 control-label">上传图片</label>
+												<div class="col-md-9">
+													<div class="row">
+														<div class="col-xs-6 col-sm-2">
+															<input type="file" class="form-control" id="file_sctp" style=" width:500px; height:35px;"/>
+														</div>
+													</div>
+												</div>
+											</div>
+                                            <div class="form-group">
+												<label class="col-md-3 control-label">物品描述</label>
+												<div class="col-md-9">
+													<div class="row">
+														<div class="col-md-10">
+															<textarea name="tex_wpms"  id= "tex_wpms" class="form-control" placeholder="请输入物品描述信息！" rows="10" style=" width:500px;"></textarea>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</fieldset>
+							<div class="text-right">	
+								<a href="javascript:public_info()" class="btn radius btn-white btn-sm">发布</a>
+								<a href="javascript:reset()" class="btn radius btn-white btn-sm">重置</a>
+							</div>
+						</div>
+						<!-- main end -->
+					</div>
+				</div>
+			</section>
+			<!-- main-container end -->
+
+			<!-- section start -->
+			<!-- ================ -->
+			<div class="section gray-bg object-non-visible" data-animation-effect="fadeInUpSmall" data-effect-delay="300">
+				<div class="owl-carousel content-slider">
+					<div class="testimonial">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-8 col-md-offset-2">
+									<h2 class="title">失踪儿童</h2>
+									<div class="testimonial-image">
+										<img src="../../static/web/images/testimonial-1.jpg" alt="Jane Doe" title="Jane Doe" class="img-circle">
+									</div>
+									<div class="testimonial-body">
+										<p>失踪儿童的详细描述信息！失踪儿童的详细描述信息！失踪儿童的详细描述信息！失踪儿童的详细描述信息！失踪儿童的详细描述信息！</p>
+										<div class="testimonial-info-1">- 小新</div>
+										<div class="testimonial-info-2">10 岁</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="testimonial">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-8 col-md-offset-2">
+									<h2 class="title">走失老人</h2>
+									<div class="testimonial-image">
+										<img src="../../static/web/images/testimonial-2.jpg" alt="Jane Doe" title="Jane Doe" class="img-circle">
+									</div>
+									<div class="testimonial-body">
+										<p>走失老人的详细描述信息！走失老人的详细描述信息！走失老人的详细描述信息！走失老人的详细描述信息！走失老人的详细描述信息！.</p>
+										<div class="testimonial-info-1">- 老王</div>
+										<div class="testimonial-info-2">76 岁</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="testimonial">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-8 col-md-offset-2">
+									<h2 class="title">失踪儿童</h2>
+									<div class="testimonial-image">
+										<img src="../../static/web/images/testimonial-3.jpg" alt="Jane Doe" title="Jane Doe" class="img-circle">
+									</div>
+									<div class="testimonial-body">
+										<p>失踪儿童的详细描述信息！失踪儿童的详细描述信息！失踪儿童的详细描述信息！失踪儿童的详细描述信息！失踪儿童的详细描述信息！.</p>
+										<div class="testimonial-info-1">- 小葵</div>
+										<div class="testimonial-info-2">5 岁</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- section end -->
+
+			<!-- footer start (Add "light" class to #footer in order to enable light footer) -->
+			<!-- ================ -->
+			<footer id="footer">
+
+				<!-- .footer start -->
+				<!-- .subfooter end -->
+
+			</footer>
+			<!-- footer end -->
+			<!-- footer end -->
+
+		</div>
+		<!-- page-wrapper end -->
+
+		<!-- JavaScript files placed at the end of the document so the pages load faster
+		================================================== -->
+		<!-- Jquery and Bootstap core js files -->
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=qIpkZIope09WGVB8Gvr0bXiRmiyquKYH"></script>
+		
+		<script type="text/javascript" src="../../static/web/plugins/jquery.js"></script>
+		<script type="text/javascript" src="../../static/web/bootstrap/js/bootstrap.min.js"></script>
+
+		<!-- Modernizr javascript -->
+		<script type="text/javascript" src="../../static/web/plugins/modernizr.js"></script>
+
+		<!-- Isotope javascript -->
+		<script type="text/javascript" src="../../static/web/plugins/isotope/isotope.pkgd.min.js"></script>
+
+		<!-- Owl carousel javascript -->
+		<script type="text/javascript" src="../../static/web/plugins/owl-carousel/owl.carousel.js"></script>
+
+		<!-- Magnific Popup javascript -->
+		<script type="text/javascript" src="../../static/web/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+		<!-- Appear javascript -->
+		<script type="text/javascript" src="../../static/web/plugins/jquery.appear.js"></script>
+
+		<!-- Sharrre javascript -->
+		<script type="text/javascript" src="../../static/web/plugins/jquery.sharrre.js"></script>
+
+		<!-- Count To javascript -->
+		<script type="text/javascript" src="../../static/web/plugins/jquery.countTo.js"></script>
+
+		<!-- Parallax javascript -->
+		<script src="../../static/web/plugins/jquery.parallax-1.1.3.js"></script>
+
+		<!-- Contact form -->
+		<script src="../../static/web/plugins/jquery.validate.js"></script>
+
+		<!-- Initialization of Plugins -->
+		<script type="text/javascript" src="../../static/web/js/template.js"></script>
+
+		<!-- Custom Scripts -->
+		<script type="text/javascript" src="../../static/web/js/custom.js"></script>
+		
+		<!-- 日期控件 -->
+		<script type="text/javascript" src="../../static/web/bootstrap-datepicker.js"></script>
+		<script type="text/javascript" src="../../static/web/bootstrap-datepicker.zh-CN.min.js"></script>
+		<script type="text/javascript">
+		
+			 $(function () {
+				    
+				   $('#header-top').load('../statichtml/headtop.html');  
+				   $('#header').load('../statichtml/header.html');  
+			       $('#footer').load('../statichtml/footer.html'); 	
+				 
+		            $(".datepicker").datepicker({
+		                language: "zh-CN", 
+		                autoclose: true,//选中之后自动隐藏日期选择框
+		                clearBtn: false,//清除按钮
+		                todayBtn: false,//今日按钮
+		                format: "yyyy-mm-dd"
+		            });
+		            intiWplx();
+		            initMap();
+		        }); 
+		
+				  /* 表单提交 */
+		        function public_info(){
+		      	 //物品名称
+		      	 var name =  $("#txt_wpname").val();   
+		      	 //物品类型
+		      	 var wplx =  $("#sel_wplx").val();  
+		      	 //丢失日期
+		      	 var  dsdate= $("#txt_date").val();  
+		      	 //丢失地址
+		      	 var dsdz =  $("#txt_dsdd").val();
+		      	 var dsdz_x =  $("#txt_dsdd_x").val();  
+	        	 var dsdz_y =  $("#txt_dsdd_y").val(); 
+		      	 //悬赏金额
+		      	// var xsje = $("#txt_xsje").val();  
+		      	 //口令
+		      	// var  kl =  $("#txt_kl").val();  
+		      	 //上传图片地址
+		      	 var  sctp = $("#file_sctp").val();  
+		      	 //物品描述
+		      	 var  wpms= $("#tex_wpms").val();
+		      	 
+		      	 //上送数据
+		      	 $.ajax({
+		      		 url:"add_pickup_info",
+		      		 type:"POST",
+		      		 dataType:"json",
+		      		 data:{
+		      			 name:name,
+		      			 wplx:wplx,
+		      			 dsdz:dsdz,  
+		      			 dsdz_x:dsdz_x,
+	        			 dsdz_y:dsdz_y,
+		              	 dsdate:dsdate, 
+		              	 //xsje:xsje, 
+		              	 //kl:kl,  
+		              	 sctp:sctp,
+		              	 wpms:wpms
+		      		 },
+		      		 success:function(XHR,data){
+		      			var result =eval(data);
+	        			if(result.RESULT=="SUCCESS"){
+	        				alert("保存成功");
+	        				reset();
+	        			}
+		      		 },
+		      		 error:function(XHR,error,excption){
+		      			 console.log("exception:"+error);
+		      		 }
+		      		 
+		      		 
+		      	 });
+		      	 
+		      	
+		      	 
+		        }
+         
+		        function reset(){
+		        	 $("#txt_wpname").val("");   
+			      	 //物品类型
+			      	// $("#sel_wplx").val("");  
+			      	 //丢失日期
+			      	$("#txt_date").val("");  
+			      	 //丢失地址
+			      	  $("#txt_dsdd").val(""); 
+			      	 $("#txt_dsdd_x").val(""); 
+		       	     $("#txt_dsdd_y").val("");
+			      	 //悬赏金额
+			      	// var xsje = $("#txt_xsje").val();  
+			      	 //口令
+			      	// var  kl =  $("#txt_kl").val();  
+			      	 //上传图片地址
+			      	$("#file_sctp").val("");  
+			      	 //物品描述
+			      	  $("#tex_wpms").val("");
+		        	  
+		          }
+		        
+		        function autoCreatepass(){
+		        	var kl =  Math.random()*1000000 
+		        	$("#txt_kl").val(Math.round(kl));    
+		          }
+		        
+		        /**
+				                初始化物品类型
+				**/
+				function  intiWplx(){
+						var wplxs = $("#sel_wplx");
+						$.ajax({
+						url:"initWplx",
+						type:"POST",
+						dataType:"text",
+						success:function(data){
+							try{
+								 //alert('('+data+')');
+								 //var dics = eval('('+data+')');
+								 var dics =  JSON.parse(data);
+								 if(dics.length>0){
+									 wplxs.empty();
+									 for (var i = 0 ;i<dics.length;i++){
+										var option = $("<option>").text(dics[i].text).val(dics[i].value)
+										wplxs.append(option)
+									 }
+								 }
+							}catch(e){
+								console.log(e)
+							}
+							
+						},
+						error:function(XHR,error,excption){
+							 console.log("exception:"+error);
+						}
+						
+						});
+				}
+		        
+				  function confirmAddress(){
+		        	  if (window.confirm($("#txt_dsdd").val())){
+		        		  $("#closeBtn").click();
+		        	  }
+		          }
+				 function setdsddvalue(value,x,y){
+		        	  $("#txt_dsdd").val(""); 
+		        	  $("#txt_dsdd").val(value); 
+		        	  $("#txt_dsdd_x").val(""); 
+		        	  $("#txt_dsdd_x").val(x);
+		        	  $("#txt_dsdd_y").val(""); 
+		        	  $("#txt_dsdd_y").val(y);
+		          }
+		            
+		          /* /**
+		                                 打开高德地图
+		          **/
+		         /*  function openMap (){
+		        	  window.open("../map_baidu.html","选择地址",
+		        			  "top=100,left=100,width=700px,height=600px,menubar=yes,scrollbars=no,toolbar=yes,status=yes");
+		          }  */
+		          
+		          /*  初始化百度地图  */
+		          function initMap(){
+		        	  // 百度地图API功能
+						var map = new BMap.Map("allmap");
+						var point = new BMap.Point(116.331398,39.897445);
+						map.centerAndZoom(point,12);
+						map.enableScrollWheelZoom();
+						
+						//地址逆解析
+						var geoc = new BMap.Geocoder();    
+						
+						
+						//点击事件，获取坐标
+						map.addEventListener("click",function(e){
+							var  clickPoint = e.point;
+							//alert(clickPoint.lng + "," + clickPoint.lat);
+							//解析出详细地址
+							geoc.getLocation(clickPoint, function(rs){
+								var addComp = rs.addressComponents;
+								var ds =addComp.province + "-" + addComp.city + "-" + addComp.district + "-" + addComp.street + addComp.streetNumber;
+								//alert(ds);
+								setdsddvalue(ds,clickPoint.lng,clickPoint.lat);
+							});  
+						});
+						
+						var geolocation = new BMap.Geolocation();
+						geolocation.getCurrentPosition(function(r){
+							if(this.getStatus() == BMAP_STATUS_SUCCESS){
+								
+							}
+							else {
+								alert('failed'+this.getStatus());
+							}        
+						},{enableHighAccuracy: true})
+						//关于状态码
+						//BMAP_STATUS_SUCCESS	检索成功。对应数值“0”。
+						//BMAP_STATUS_CITY_LIST	城市列表。对应数值“1”。
+						//BMAP_STATUS_UNKNOWN_LOCATION	位置结果未知。对应数值“2”。
+						//BMAP_STATUS_UNKNOWN_ROUTE	导航结果未知。对应数值“3”。
+						//BMAP_STATUS_INVALID_KEY	非法密钥。对应数值“4”。
+						//BMAP_STATUS_INVALID_REQUEST	非法请求。对应数值“5”。
+						//BMAP_STATUS_PERMISSION_DENIED	没有权限。对应数值“6”。(自 1.1 新增)
+						//BMAP_STATUS_SERVICE_UNAVAILABLE	服务不可用。对应数值“7”。(自 1.1 新增)
+						//BMAP_STATUS_TIMEOUT	超时。对应数值“8”。(自 1.1 新增)
+						//initSerch(map);
+						
+						// 百度地图API功能
+						
+				        function setPlace(){
+								map.clearOverlays();    //清除地图上所有覆盖物
+								function myFun(){
+									var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
+									geoc.getLocation(pp, function(rs){
+										var addComp = rs.addressComponents;
+										var ds =addComp.province + "-" + addComp.city + "-" + addComp.district + "-" + addComp.street + addComp.streetNumber;
+										//alert(ds);
+										setdsddvalue(ds,pp.lng,pp.lat);
+									});  
+									map.centerAndZoom(pp, 18);
+									map.addOverlay(new BMap.Marker(pp));    //添加标注
+								}
+								var local = new BMap.LocalSearch(map, { //智能搜索
+								  onSearchComplete: myFun
+								});
+								local.search(myValue);
+						 }
+				          
+				        function G(id) {
+								return document.getElementById(id);
+						}
+
+						var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
+							{"input" : "suggestId"
+							,"location" : map
+						});
+
+						ac.addEventListener("onhighlight", function(e) {  //鼠标放在下拉列表上的事件
+						    var str = "";
+							var _value = e.fromitem.value;
+							var value = "";
+							if (e.fromitem.index > -1) {
+								value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+							}    
+							str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+							value = "";
+							if (e.toitem.index > -1) {
+								_value = e.toitem.value;
+								value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+							}    
+							str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+							G("searchResultPanel").innerHTML = str;
+						});
+
+						var myValue;
+						ac.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件
+						var _value = e.item.value;
+							myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+							G("searchResultPanel").innerHTML ="onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
+							
+							setPlace();
+						});
+
+						
+		          }
+		        
+		</script>
+
+	</body>
+</html>

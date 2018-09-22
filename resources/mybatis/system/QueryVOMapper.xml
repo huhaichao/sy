@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fh.dao.QueryVOMapper">
+
+	<!-- 定义商品查询的sql片段，就是商品查询条件 -->
+	<sql id="query_items_where">
+		<!-- 使用动态sql，通过if判断，满足条件进行sql拼接 -->
+		<if test="appuser!=null">
+			<if test="appuser.username!=null and appuser.username!=''">
+				and t_sy_sys_app_user.name LIKE '%${appuser.username}%'
+			</if>
+		</if>
+		<if test="tb!=null">
+			<if test="tb.keyword!=null and tb.keyword!=''">
+				and t_sy_sys_tb.keyword LIKE '%${tb.keyword}%'
+			</if>
+		</if>
+	</sql>
+
+	<!-- parameterType传入包装对象(包装了查询条件) resultType建议使用扩展对象 -->
+	<select id="getItemsList" parameterType="QueryVO" resultMap="items">
+		SELECT
+		t_sy_sys_tb.*,
+		t_sy_sys_app_user.*
+		FROM
+		t_sy_sys_tb,
+		t_sy_sys_app_user
+		WHERE t_sy_sys_tb.author_id =
+		t_sy_sys_app_user.USER_ID
+		<include refid="query_items_where"></include>
+	</select>
+
+	<resultMap type="QueryVO" id="items">
+		<id property="id" column="id"/>
+		<association property="appuser" resultMap="appUser"></association>
+		<association property="tb" resultMap="tb"></association>
+	</resultMap>
+
+	<resultMap type="AppUser" id="appUser">
+		<id property="user_id" column="user_id" />
+		<result property="username" column="username" />
+		<result property="password" column="password" />
+		<result property="name" column="name" />
+		<result property="rights" column="rights" />
+		<result property="role_id" column="role_id" />
+		<result property="last_login" column="last_login" />
+		<result property="ip" column="ip" />
+		<result property="status" column="status" />
+		<result property="bz" column="bz" />
+		<result property="phone" column="phone" />
+		<result property="sfid" column="sfid" />
+		<result property="start_time" column="start_time" />
+		<result property="end_time" column="end_time" />
+		<result property="years" column="years" />
+		<result property="number" column="number" />
+		<result property="email" column="email" />
+	</resultMap>
+
+	<resultMap type="Tb" id="tb">
+		<id property="id" column="id" />
+		<result property="author_id" column="author_id" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="input_date" column="input_date" />
+		<result property="review" column="review" />
+		<result property="keyword" column="keyword" />
+	</resultMap>
+</mapper>

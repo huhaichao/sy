@@ -1,0 +1,238 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<link href="../static/web/bootstrap/css/bootstrap.css" rel="stylesheet">
+	<style type="text/css">
+		body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+		#r-result{width:300px;}
+	</style>
+	<title>浏览器定位</title>
+</head>
+<body>
+  <!--   <form  role="form" class="form-horizontal" id="uploadFile">
+	  <div class="form-group">
+		<label class="col-md-3 control-label">上传图片</label>
+		<div class="col-md-9">
+			<div class="row">
+				<div class="col-xs-6 col-sm-2">
+				   <input type="text" class="form-control" id="file_sctp_upload" style=" width:500px; height:35px;"/>			
+				      <input name="key" type="hidden" id="key" value="<resource_key>">
+					  <input name="x:<custom_name>" type="hidden" value="<custom_value>">
+					  <input name="token" type="hidden" id="token" value="<upload_token>">
+					  <input name="file" type="file"  class="form-control" id="file_sctp_upload" style=" width:500px; height:35px;"/>
+					  <input name="crc32" type="hidden" />
+					  <input name="accept" type="hidden" value="application/json"/>		
+					  <button type="button" class="btn btn-sm btn-default" id="btn_upload">上  传</button>										 
+				</div>
+			</div>
+		</div>
+		<div id="progressbar"><div class="progress-label"></div></div>
+	 </div> -->
+		<!--   <div class="container">  -->
+			    <!-- <div id="mymodal" class="modal fade hild in " data-backdrop="false">
+			      <div class="modal-content">  -->
+			      <div class="modal-dialog modal-lg">
+			        <div class="modal-header"> 
+			            <h4 class="modal-title" id="mymodal-label">上传图片</h4>
+			        </div> 
+			        <div class="modal-body">
+			              <input name="key" type="hidden" id="key" value="<resource_key>">
+						  <input name="x:<custom_name>" type="hidden" value="<custom_value>">
+						  <input name="token" type="hidden" id="token" value="<upload_token>">
+						  <input name="file" type="file" multiple="multiple"  class="form-control"  id="file_sctp_upload" style=" width:500px; height:35px;"/>
+						  <input name="crc32" type="hidden" />
+						  <input name="accept" type="hidden" value="application/json"/>		
+			        </div> 
+			        <div class="modal-footer"> 
+			           <button type="button" class="btn btn-sm btn-default" id="btn_upload">上  传</button>
+			        </div>
+			        
+				     <!-- <div class="progress">
+						   <div class="progress-bar" role="progressbar" aria-valuenow="60"
+						      aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
+						      <span class="sr-only">40% 完成</span>
+						   </div>
+					 </div> --> 
+			       </div>
+			      
+			    <!-- </div>  --> 
+	    <!-- </div>   -->
+		 <!-- <div class="modal fade" id="mymodal" data-show="true">
+			   <div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title" id="project-1-label">上传图片</h4>
+					</div>
+					<div class="modal-body">
+						  <input name="key" type="hidden" id="key" value="<resource_key>">
+						  <input name="x:<custom_name>" type="hidden" value="<custom_value>">
+						  <input name="token" type="hidden" id="token" value="<upload_token>">
+						  <input name="file" type="file"  class="form-control" id="file_sctp_upload" style=" width:500px; height:35px;"/>
+						  <input name="crc32" type="hidden" />
+						  <input name="accept" type="hidden" value="application/json"/>		
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-sm btn-default" id="btn_upload">确认</button>
+						<button type="button" class="btn btn-sm btn-default" data-dismiss="modal">返回</button>
+					</div>
+				</div>
+			</div>
+		</div> -->
+	  
+<!-- </form> -->
+</body>
+
+</html>
+<script type="text/javascript" src="../static/web/plugins/jquery.js"></script>
+		<script type="text/javascript" src="../static/web/bootstrap/js/bootstrap.min.js"></script>
+<!-- <script type="text/javascript" src="../static/UI_new/js/jquery-ui-1.10.2.custom.min.js"> -->
+
+</script>
+<script type="text/javascript">
+
+/*
+ *   本示例演示七牛云存储表单上传
+ *
+ *   按照以下的步骤运行示例：
+ *
+ *   1. 填写token。需要您不知道如何生成token，可以点击右侧的链接生成，然后将结果复制粘贴过来。
+ *   2. 填写key。如果您在生成token的过程中指定了key，则将其输入至此。否则留空。
+ *   3. 姓名是一个自定义的变量，如果生成token的过程中指定了returnUrl和returnBody，
+ *      并且returnBody中指定了期望返回此字段，则七牛会将其返回给returnUrl对应的业务服务器。
+ *      callbackBody亦然。
+ *   4. 选择任意一张照片，然后点击提交即可
+ *
+ *   实际开发中，您可以通过后端开发语言动态生成这个表单，将token的hidden属性设置为true并对其进行赋值。
+ *
+ *  **********************************************************************************
+ *  * 贡献代码：
+ *  * 1. git clone git@github.com:icattlecoder/jsfiddle
+ *  * 2. push代码到您的github库
+ *  * 3. 测试效果，访问 http://jsfiddle.net/gh/get/jquery/1.9.1/<Your GitHub Name>/jsfiddle/tree/master/ajaxupload
+ *  * 4. 提pr
+ *   **********************************************************************************
+ */
+$(document).ready(function() {
+    /* var progressbar = $("#progressbar"),
+        progressLabel = $(".progress-label");
+    progressbar.progressbar({
+        value: false,
+        change: function() {
+            progressLabel.text(progressbar.progressbar("value") + "%");
+        },
+        complete: function() {
+            progressLabel.text("Complete!");
+        }
+    }); */
+    /*  $("#mymodal").modal('show');  */
+    $("#btn_upload").click(function() {
+  
+    	 var key = $("#file_sctp_upload").val();
+         var keyName = getFileName(key);
+         $("#key").val(keyName);
+         getUploadToken(keyName);
+        
+    })
+})
+
+    //普通上传
+    function Qiniu_upload(f, token, key) {
+	        var Qiniu_UploadUrl = "http://upload-z2.qiniu.com";
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', Qiniu_UploadUrl, true);
+            var formData, startDate;
+            formData = new FormData();
+            if (key !== null && key !== undefined) formData.append('key', key);
+            formData.append('token', token);
+            formData.append('file', f);
+            var taking;
+           /*  xhr.upload.addEventListener("progress", function(evt) {
+                if (evt.lengthComputable) {
+                    var nowDate = new Date().getTime();
+                    taking = nowDate - startDate;
+                    var x = (evt.loaded) / 1024;
+                    var y = taking / 1000;
+                    var uploadSpeed = (x / y);
+                    var formatSpeed;
+                    if (uploadSpeed > 1024) {
+                        formatSpeed = (uploadSpeed / 1024).toFixed(2) + "Mb\/s";
+                    } else {
+                        formatSpeed = uploadSpeed.toFixed(2) + "Kb\/s";
+                    }
+                    var percentComplete = Math.round(evt.loaded * 100 / evt.total);
+                    progressbar.progressbar("value", percentComplete);
+                    // console && console.log(percentComplete, ",", formatSpeed);
+                }
+            }, false); */
+
+            xhr.onreadystatechange = function(response) {
+                if (xhr.readyState == 4 && xhr.status == 200 && xhr.responseText != "") {
+                    var blkRet = JSON.parse(xhr.responseText);
+                    console && console.log(blkRet);
+                    alert("上传成功");
+                } else if (xhr.status != 200 && xhr.responseText) {
+                	alert(xhr.responseText);
+                }
+            };
+            startDate = new Date().getTime();
+            /* $("#progressbar").show(); */
+            xhr.send(formData);
+  };
+
+/**
+文件上传
+**/
+/* function uploadSubmit(){
+	var filename =  $("#file_sctp_upload").val();
+	$("#key").val(filename); 
+	getUploadToken(filename);
+	$("#uploadFile").submit();
+} */
+
+/**
+获取tonken
+**/
+function getUploadToken(key){
+	$.ajax({
+		url:"UploadQN/uploadTonken",
+		type:"POST",
+		dataType:"text",
+		async:true, 
+		data:{
+		  keyValue:key
+	    },
+		success:function(data){
+			try{
+				var tonken =  JSON.parse(data);
+				$("#token").val(tonken.uploadToken);
+				var token = $("#token").val();
+		        if ($("#file_sctp_upload")[0].files.length > 0 && token != "") {
+		            Qiniu_upload($("#file_sctp_upload")[0].files[0], token,keyName);
+		        } else {
+		            console && console.log("上传错误");
+		        }
+			}catch(e){
+			    console.log(e)
+			}
+		},
+		error:function(XHR,error,excption){
+		    console.log("exception:"+error);
+	    }
+
+});
+}
+
+function  getFileName(filePath){
+	 
+	  var  index =  filePath.lastIndexOf("\\");
+	  if (index>0){
+		  return  filePath.substring(index+1);
+	  }else{
+		  return filePath;
+	  }
+	  
+}
+	
+</script>

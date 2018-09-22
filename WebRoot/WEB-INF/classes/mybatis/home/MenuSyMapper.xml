@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MenuSyMapper">
+
+<sql id="menuColumns">T_SY_MENU_ID,T_SY_MENU_SUBMENU_ID,T_SY_MENU_NAME,T_SY_MENU_PARENT_ID,T_SY_MENU_URL,T_SY_MENU_DISABLED,T_SY_MENU_ORDER,T_SY_MENU_DESCRIPTION,T_SY_CREATEDATE,T_SY_BZ1,T_SY_BZ2</sql>
+
+	<resultMap type="SyMenu" id="menuResultMap">
+		<id column="T_SY_MENU_ID" property="tSyMenuId"/>
+		<result column="T_SY_MENU_SUBMENU_ID" property="tSyMenuSubmenuId"/>
+		<result column="T_SY_MENU_NAME" property="tSyMenuName"/>
+		<result column="T_SY_MENU_PARENT_ID" property="tSyMenuParentId"/>
+		<result column="T_SY_MENU_URL" property="tSyMenuUrl"/>
+		<result column="T_SY_MENU_DISABLED" property="tSyMenuDisabled"/>
+		<result column="T_SY_MENU_ORDER" property="tSyMenuOrder"/>
+		<result column="T_SY_MENU_DESCRIPTION" property="tSyMenuDescription"/>
+		<result column="T_SY_CREATEDATE" property="tSyCreate"/>
+		<result column="T_SY_BZ1" property="tSyBz1"/>
+		<result column="T_SY_BZ2" property="tSyBz2" />
+	</resultMap>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into T_SY_MENU(	
+			T_SY_MENU_NAME,	
+			T_SY_MENU_PARENT_ID,	
+			T_SY_MENU_URL,	
+			T_SY_MENU_DISABLED,	
+			T_SY_MENU_ORDER,	
+			T_SY_MENU_DESCRIPTION,	
+			T_SY_CREATEDATE,	
+			T_SY_BZ1,	
+			T_SY_BZ2
+		) values (	
+			#{T_SY_MENU_NAME},	
+			#{T_SY_MENU_PARENT_ID},	
+			#{T_SY_MENU_URL},	
+			#{T_SY_MENU_DISABLED},	
+			#{T_SY_MENU_ORDER},	
+			#{T_SY_MENU_DESCRIPTION},	
+			#{T_SY_CREATEDATE},	
+			#{T_SY_BZ1},	
+			#{T_SY_BZ2}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from T_SY_MENU
+		where 
+			T_SY_MENU_ID = #{T_SY_MENU_ID}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  T_SY_MENU
+			set 
+				T_SY_MENU_ID = #{T_SY_MENU_ID},
+				T_SY_MENU_SUBMENU_ID = #{T_SY_MENU_SUBMENU_ID},
+				T_SY_MENU_NAME = #{T_SY_MENU_NAME},
+				T_SY_MENU_PARENT_ID = #{T_SY_MENU_PARENT_ID},
+				T_SY_MENU_URL = #{T_SY_MENU_URL},
+				T_SY_MENU_DISABLED = #{T_SY_MENU_DISABLED},
+				T_SY_MENU_ORDER = #{T_SY_MENU_ORDER},
+				T_SY_MENU_DESCRIPTION = #{T_SY_MENU_DESCRIPTION},
+				T_SY_CREATEDATE = #{T_SY_CREATEDATE},
+				T_SY_BZ1 = #{T_SY_BZ1},
+				T_SY_BZ2 = #{T_SY_BZ2},
+			T_SY_MENU_ID = T_SY_MENU_ID
+			where 
+				T_SY_MENU_ID = #{T_SY_MENU_ID}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			T_SY_MENU_ID,	
+			T_SY_MENU_SUBMENU_ID,	
+			T_SY_MENU_NAME,	
+			T_SY_MENU_PARENT_ID,	
+			T_SY_MENU_URL,	
+			T_SY_MENU_DISABLED,	
+			T_SY_MENU_ORDER,	
+			T_SY_MENU_DESCRIPTION,	
+			T_SY_CREATEDATE,	
+			T_SY_BZ1,	
+			T_SY_BZ2
+		from 
+			T_SY_MENU
+		where 
+			T_SY_MENU_ID = #{T_SY_MENU_ID}
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				a.T_SY_MENU_ID,	
+				a.T_SY_MENU_SUBMENU_ID,	
+				a.T_SY_MENU_NAME,	
+				a.T_SY_MENU_PARENT_ID,	
+				a.T_SY_MENU_URL,	
+				a.T_SY_MENU_DISABLED,	
+				a.T_SY_MENU_ORDER,	
+				a.T_SY_MENU_DESCRIPTION,	
+				a.T_SY_CREATEDATE,	
+				a.T_SY_BZ1,	
+				a.T_SY_BZ2
+		from 
+				T_SY_MENU a where 1=1 
+				<if test="pd.menuName != null and pd.menuName != ''">
+               		and a.T_SY_MENU_NAME like CONCAT(CONCAT('%', #{pd.menuName}),'%')
+            	</if>
+            	<if test="pd.lastLoginStart!=null and pd.lastLoginStart!=''">
+					and a.T_SY_CREATEDATE &gt;= #{pd.lastLoginStart} 
+				</if>
+				<if test="pd.lastLoginEnd!=null and pd.lastLoginEnd!=''">
+					and a.T_SY_CREATEDATE &lt;= #{pd.lastLoginEnd} 
+				</if>
+				ORDER BY a.T_SY_MENU_ORDER
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+				a.T_SY_MENU_ID,	
+				a.T_SY_MENU_SUBMENU_ID,	
+				a.T_SY_MENU_NAME,	
+				a.T_SY_MENU_PARENT_ID,	
+				a.T_SY_MENU_URL,	
+				a.T_SY_MENU_DISABLED,	
+				a.T_SY_MENU_ORDER,	
+				a.T_SY_MENU_DESCRIPTION,	
+				a.T_SY_CREATEDATE,	
+				a.T_SY_BZ1,	
+				a.T_SY_BZ2
+		from 
+				T_SY_MENU a
+	</select>
+	
+	<!-- 列表(父级ID) -->
+	<select id="listAllID" parameterType="pd" resultType="pd">
+		select T_SY_MENU_SUBMENU_ID,T_SY_MENU_NAME,T_SY_MENU_PARENT_ID 
+			from t_sy_menu where T_SY_MENU_SUBMENU_ID 
+			in (select distinct T_SY_MENU_PARENT_ID from t_sy_menu) 
+			order by T_SY_MENU_SUBMENU_ID
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from T_SY_MENU
+		where 
+			T_SY_MENU_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+</mapper>

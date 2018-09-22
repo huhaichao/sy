@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ImageSyMapper">
+	
+	<sql id="imageColumns">T_SY_PICTURE_ID,T_SY_NAME,T_SY_TITLE,T_SY_PATH,T_SY_LINK_PATH,T_SY_DESC,T_SY_DATE,T_SY_TYPE,T_SY_BZ1,T_SY_BZ2</sql>
+
+	<resultMap type="SyImage" id="imageResultMap">
+		<id column="T_SY_PICTURE_ID" property="tSyPictureId"/>
+		<result column="T_SY_NAME" property="tSyName"/>
+		<result column="T_SY_TITLE" property="tSyTitle"/>
+		<result column="T_SY_PATH" property="tSyPath"/>
+		<result column="T_SY_LINK_PATH" property="tSyLinkPath"/>
+		<result column="T_SY_DESC" property="tSyDesc"/>
+		<result column="T_SY_DATE" property="tSyDate"/>
+		<result column="T_SY_TYPE" property="tSyType"/>
+		<result column="T_SY_BZ1" property="tSyBz1"/>
+		<result column="T_SY_BZ2" property="tSyBz2" />
+	</resultMap>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into T_SY_PICTURE(	
+			T_SY_NAME,	
+			T_SY_TITLE,	
+			T_SY_PATH,	
+			T_SY_LINK_PATH,	
+			T_SY_DESC,	
+			T_SY_DATE,	
+			T_SY_TYPE,	
+			T_SY_BZ1,	
+			T_SY_BZ2
+		) values (
+			#{T_SY_NAME},	
+			#{T_SY_TITLE},	
+			#{T_SY_PATH},	
+			#{T_SY_LINK_PATH},	
+			#{T_SY_DESC},	
+			#{T_SY_DATE},	
+			#{T_SY_TYPE},	
+			#{T_SY_BZ1},	
+			#{T_SY_BZ2}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from T_SY_PICTURE
+		where 
+			T_SY_PICTURE_ID = #{T_SY_PICTURE_ID}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  T_SY_PICTURE
+			set 
+				T_SY_PICTURE_ID = #{T_SY_PICTURE_ID},
+				T_SY_NAME = #{T_SY_NAME},
+				T_SY_TITLE = #{T_SY_TITLE},
+				T_SY_PATH = #{T_SY_PATH},
+				T_SY_LINK_PATH = #{T_SY_LINK_PATH},
+				T_SY_DESC = #{T_SY_DESC},
+				T_SY_DATE = #{T_SY_DATE},
+				T_SY_TYPE = #{T_SY_TYPE},
+				T_SY_BZ1 = #{T_SY_BZ1},
+				T_SY_BZ2 = #{T_SY_BZ2},
+			T_SY_PICTURE_ID = T_SY_PICTURE_ID
+			where 
+				T_SY_PICTURE_ID = #{T_SY_PICTURE_ID}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			T_SY_PICTURE_ID,	
+			T_SY_NAME,	
+			T_SY_TITLE,	
+			T_SY_PATH,	
+			T_SY_LINK_PATH,	
+			T_SY_DESC,	
+			T_SY_DATE,	
+			T_SY_TYPE,	
+			T_SY_BZ1,	
+			T_SY_BZ2
+		from 
+			T_SY_PICTURE
+		where 
+			T_SY_PICTURE_ID = #{T_SY_PICTURE_ID}
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				a.T_SY_PICTURE_ID,	
+				a.T_SY_NAME,	
+				a.T_SY_TITLE,	
+				a.T_SY_PATH,	
+				a.T_SY_LINK_PATH,	
+				a.T_SY_DESC,	
+				a.T_SY_DATE,	
+				a.T_SY_TYPE,	
+				a.T_SY_BZ1,	
+				a.T_SY_BZ2
+		from 
+				T_SY_PICTURE a where 1=1 
+				<if test="pd.imageName != null and pd.imageName != ''">
+               		and a.T_SY_NAME like CONCAT(CONCAT('%', #{pd.imageName}),'%')  or a.T_SY_TITLE like CONCAT(CONCAT('%', #{pd.imageName}),'%')
+            	</if>
+            	<if test="pd.lastLoginStart!=null and pd.lastLoginStart!=''">
+					and a.T_SY_DATE &gt;= #{pd.lastLoginStart} 
+				</if>
+				<if test="pd.lastLoginEnd!=null and pd.lastLoginEnd!=''">
+					and a.T_SY_DATE &lt;= #{pd.lastLoginEnd} 
+				</if>
+				 ORDER BY a.T_SY_DATE
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+				a.T_SY_PICTURE_ID,	
+				a.T_SY_NAME,	
+				a.T_SY_TITLE,	
+				a.T_SY_PATH,	
+				a.T_SY_LINK_PATH,	
+				a.T_SY_DESC,	
+				a.T_SY_DATE,	
+				a.T_SY_TYPE,	
+				a.T_SY_BZ1,	
+				a.T_SY_BZ2
+		from 
+				T_SY_PICTURE a ORDER BY a.T_SY_DATE
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from T_SY_PICTURE
+		where 
+			T_SY_PICTURE_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+</mapper>

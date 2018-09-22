@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserSyMapper">
+	<!-- 全量字段 -->
+	<sql id="userColumns">T_SY_USER_ID,T_SY_ACCOUNT,T_SY_PASSWORD,T_SY_PAY_PASSWORD,T_SY_USERNAME,T_SY_NICKNAME,T_SY_SEX,T_SY_DATEOFBIRTH,T_SY_CARDID,T_SY_MAIL,T_SY_PHONE,T_SY_REMARK,T_SY_INTEGRAL,T_SY_IMGPATH,T_SY_USER_STATUS,T_SY_ACCOUNT_STATE,T_SY_ROLEID,T_SY_CREATE_TIME,T_SY_LASTLOGINTIME,T_SY_ISONLINE,T_SY_ISLIMIR,T_SY_BZ1,T_SY_BZ2,T_SY_DEL_STATUS,T_SY_DEL_DATE</sql>
+	<!-- 默认插入字段 -->
+	<sql id="userDefault">T_SY_ACCOUNT,T_SY_PASSWORD,T_SY_PAY_PASSWORD,T_SY_USERNAME,T_SY_NICKNAME,T_SY_SEX,T_SY_DATEOFBIRTH,T_SY_CARDID,T_SY_MAIL,T_SY_PHONE,T_SY_REMARK,T_SY_IMGPATH,T_SY_ROLEID,T_SY_CREATE_TIME,T_SY_BZ1,T_SY_BZ2</sql>
+
+	<resultMap type="SyUser" id="userResultMap">
+		<id column="T_SY_USER_ID" property="tSyUserId" />
+		<id column="T_SY_ACCOUNT" property="tSyAccount" />
+		<id column="T_SY_PASSWORD" property="tSyPassword" />
+		<id column="T_SY_PAY_PASSWORD" property="tSyPayPassword" />
+		<id column="T_SY_USERNAME" property="tSyUserName" />
+		<id column="T_SY_NICKNAME" property="tSyNickName" />
+		<id column="T_SY_SEX" property="tSySex" />
+		<id column="T_SY_DATEOFBIRTH" property="tSyDateOfBirth" />
+		<id column="T_SY_CARDID" property="tSyCardId" />
+		<id column="T_SY_MAIL" property="tSyMail" />
+		<id column="T_SY_PHONE" property="tSyPhone" />
+		<id column="T_SY_REMARK" property="tSyRemark" />
+		<id column="T_SY_INTEGRAL" property="tSyIntegral" />
+		<id column="T_SY_IMGPATH" property="tSyImgPath" />
+		<id column="T_SY_USER_STATUS" property="tSyUserStatus" />
+		<id column="T_SY_ACCOUNT_STATE" property="tSyAccountState" />
+		<id column="T_SY_ROLEID" property="tSyRoleId" />
+		<id column="T_SY_CREATE_TIME" property="tSyCreateTime" />
+		<id column="T_SY_LASTLOGINTIME" property="tSyLastLoginTime" />
+		<id column="T_SY_ISONLINE" property="tSyIsOnLine" />
+		<id column="T_SY_ISLIMIR" property="tSyIsLimir" />
+		<id column="T_SY_BZ1" property="tSyBz1" />
+		<id column="T_SY_BZ2" property="tSyBz2" />
+		<id column="T_SY_DEL_STATUS" property="tSyDelStatus" />
+		<id column="T_SY_DEL_DATE" property="tSyDelDate" />
+	</resultMap>
+	
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into t_sy_user(	
+			<include refid="userDefault"/>
+		) values (	
+			#{T_SY_ACCOUNT},	
+			#{T_SY_PASSWORD},	
+			#{T_SY_PAY_PASSWORD},	
+			#{T_SY_USERNAME},	
+			#{T_SY_NICKNAME},	
+			#{T_SY_SEX},	
+			#{T_SY_DATEOFBIRTH},	
+			#{T_SY_CARDID},	
+			#{T_SY_MAIL},	
+			#{T_SY_PHONE},	
+			#{T_SY_REMARK},
+			#{T_SY_IMGPATH},	
+			#{T_SY_ROLEID},	
+			#{T_SY_CREATE_TIME},	
+			#{T_SY_BZ1},	
+			#{T_SY_BZ2}
+		)
+	</insert>
+	
+	
+	<!-- 物理删除-->
+	<delete id="delete" parameterType="pd">
+		delete from t_sy_user
+		where 
+			T_SY_USER_ID = #{T_SY_USER_ID}
+	</delete>
+	
+	<!-- 逻辑删除  zbb add 2017-03-21 -->
+	<delete id="deleteUpd" parameterType="pd">
+		update  t_sy_user 
+			set T_SY_DEL_STATUS = '1' 
+		where 
+			T_SY_USER_ID = #{T_SY_USER_ID}
+	</delete>
+	
+	<!-- 还原  zbb add 2017-03-21 -->
+	<delete id="restore" parameterType="pd">
+		update  t_sy_user 
+			set T_SY_DEL_STATUS = '0' 
+		where 
+			T_SY_USER_ID = #{T_SY_USER_ID}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  t_sy_user
+			set 
+				T_SY_USER_ID = #{T_SY_USER_ID},
+				T_SY_ACCOUNT = #{T_SY_ACCOUNT},
+				T_SY_PASSWORD = #{T_SY_PASSWORD},
+				T_SY_PAY_PASSWORD = #{T_SY_PAY_PASSWORD},
+				T_SY_USERNAME = #{T_SY_USERNAME},
+				T_SY_NICKNAME = #{T_SY_NICKNAME},
+				T_SY_SEX = #{T_SY_SEX},
+				T_SY_DATEOFBIRTH = #{T_SY_DATEOFBIRTH},
+				T_SY_CARDID = #{T_SY_CARDID},
+				T_SY_MAIL = #{T_SY_MAIL},
+				T_SY_PHONE = #{T_SY_PHONE},
+				T_SY_REMARK = #{T_SY_REMARK},
+				T_SY_IMGPATH = #{T_SY_IMGPATH},
+				T_SY_ROLEID = #{T_SY_ROLEID},
+				T_SY_CREATE_TIME = #{T_SY_CREATE_TIME},
+				T_SY_BZ1 = #{T_SY_BZ1},
+				T_SY_BZ2 = #{T_SY_BZ2},
+			T_SY_USER_ID = T_SY_USER_ID
+			where 
+				T_SY_USER_ID = #{T_SY_USER_ID}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			T_SY_USER_ID,	
+			T_SY_ACCOUNT,	
+			T_SY_PASSWORD,	
+			T_SY_PAY_PASSWORD,	
+			T_SY_USERNAME,	
+			T_SY_NICKNAME,	
+			T_SY_SEX,	
+			T_SY_DATEOFBIRTH,	
+			T_SY_CARDID,	
+			T_SY_MAIL,	
+			T_SY_PHONE,	
+			T_SY_REMARK,	
+			T_SY_INTEGRAL,	
+			T_SY_IMGPATH,	
+			T_SY_USER_STATUS,	
+			T_SY_ACCOUNT_STATE,	
+			T_SY_ROLEID,	
+			T_SY_CREATE_TIME,	
+			T_SY_LASTLOGINTIME,	
+			T_SY_ISONLINE,	
+			T_SY_ISLIMIR,	
+			T_SY_BZ1,	
+			T_SY_BZ2,	
+			T_SY_DEL_STATUS,	
+			T_SY_DEL_DATE
+		from 
+			t_sy_user
+		where 
+			T_SY_USER_ID = #{T_SY_USER_ID} and T_SY_DEL_STATUS = '0'
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				a.T_SY_USER_ID,	
+				a.T_SY_ACCOUNT,	
+				a.T_SY_PASSWORD,	
+				a.T_SY_PAY_PASSWORD,	
+				a.T_SY_USERNAME,	
+				a.T_SY_NICKNAME,	
+				a.T_SY_SEX,	
+				a.T_SY_DATEOFBIRTH,	
+				a.T_SY_CARDID,	
+				a.T_SY_MAIL,	
+				a.T_SY_PHONE,	
+				a.T_SY_REMARK,	
+				a.T_SY_INTEGRAL,	
+				a.T_SY_IMGPATH,	
+				a.T_SY_USER_STATUS,	
+				a.T_SY_ACCOUNT_STATE,	
+				a.T_SY_ROLEID,	
+				a.T_SY_CREATE_TIME,	
+				a.T_SY_LASTLOGINTIME,	
+				a.T_SY_ISONLINE,	
+				a.T_SY_ISLIMIR,	
+				a.T_SY_BZ1,	
+				a.T_SY_BZ2,	
+				a.T_SY_DEL_STATUS,	
+				a.T_SY_DEL_DATE
+		from 
+				t_sy_user a where a.T_SY_DEL_STATUS = '0'
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+				a.T_SY_USER_ID,	
+				a.T_SY_ACCOUNT,	
+				a.T_SY_PASSWORD,	
+				a.T_SY_PAY_PASSWORD,	
+				a.T_SY_USERNAME,	
+				a.T_SY_NICKNAME,	
+				a.T_SY_SEX,	
+				a.T_SY_DATEOFBIRTH,	
+				a.T_SY_CARDID,	
+				a.T_SY_MAIL,	
+				a.T_SY_PHONE,	
+				a.T_SY_REMARK,	
+				a.T_SY_INTEGRAL,	
+				a.T_SY_IMGPATH,	
+				a.T_SY_USER_STATUS,	
+				a.T_SY_ACCOUNT_STATE,	
+				a.T_SY_ROLEID,	
+				a.T_SY_CREATE_TIME,	
+				a.T_SY_LASTLOGINTIME,	
+				a.T_SY_ISONLINE,	
+				a.T_SY_ISLIMIR,	
+				a.T_SY_BZ1,	
+				a.T_SY_BZ2,	
+				a.T_SY_DEL_STATUS,	
+				a.T_SY_DEL_DATE
+		from 
+				t_sy_user a where a.T_SY_DEL_STATUS = '0'
+	</select>
+	
+	<!-- 用户列表(app用户组) -->
+	<select id="userlistPage" parameterType="page" resultType="pd">
+		select
+				u.T_SY_USER_ID,	
+				u.T_SY_ACCOUNT,	
+				u.T_SY_PASSWORD,	
+				u.T_SY_PAY_PASSWORD,	
+				u.T_SY_USERNAME,	
+				u.T_SY_NICKNAME,	
+				u.T_SY_SEX,	
+				u.T_SY_DATEOFBIRTH,	
+				u.T_SY_CARDID,	
+				u.T_SY_MAIL,	
+				u.T_SY_PHONE,	
+				u.T_SY_REMARK,	
+				u.T_SY_INTEGRAL,	
+				u.T_SY_IMGPATH,	
+				u.T_SY_USER_STATUS,	
+				u.T_SY_ACCOUNT_STATE,	
+				u.T_SY_ROLEID,	
+				u.T_SY_CREATE_TIME,	
+				u.T_SY_LASTLOGINTIME,	
+				u.T_SY_ISONLINE,	
+				u.T_SY_ISLIMIR,	
+				u.T_SY_BZ1,	
+				u.T_SY_BZ2,	
+				u.T_SY_DEL_STATUS,	
+				u.T_SY_DEL_DATE<!-- ,
+				r.ROLE_ID,
+				r.ROLE_NAME -->
+		from t_sy_user u<!-- , t_sy_sys_role r  -->
+		where<!--  u.T_SY_ROLEID = r.ROLE_ID 
+		and 1 = 1
+		and r.PARENT_ID = '4' and  --> u.T_SY_DEL_STATUS = #{pd.delStatus}
+		
+		<if test="pd.T_SY_USERNAME != null and pd.T_SY_USERNAME != ''"><!-- 用户名检索 -->
+			and (
+				u.T_SY_USERNAME LIKE CONCAT(CONCAT('%', #{pd.T_SY_USERNAME}),'%')
+				or
+				u.T_SY_MAIL LIKE CONCAT(CONCAT('%', #{pd.T_SY_USERNAME}),'%')
+				or
+				u.T_SY_NICKNAME LIKE CONCAT(CONCAT('%', #{pd.T_SY_USERNAME}),'%')
+				)
+		</if>
+		<if test="pd.T_SY_ROLEID != null and pd.T_SY_ROLEID != ''"><!-- 角色检索 -->
+			and u.T_SY_ROLEID=#{pd.T_SY_ROLEID} 
+		</if>
+		<if test="pd.lastLoginStart!=null and pd.lastLoginStart!=''"><!-- 到期时间检索 -->
+			and u.T_SY_CREATE_TIME &gt;= #{pd.lastLoginStart} 
+		</if>
+		<if test="pd.lastLoginEnd!=null and pd.lastLoginEnd!=''"><!-- 到期时间检索 -->
+			and u.T_SY_CREATE_TIME &lt;= #{pd.lastLoginEnd} 
+		</if>
+		<if test="pd.T_SY_USER_STATUS != null and pd.T_SY_USER_STATUS != ''"><!-- 状态检索 -->
+			and u.T_SY_USER_STATUS=#{pd.T_SY_USER_STATUS} 
+		</if>
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from t_sy_user
+		where 
+			T_SY_USER_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+	<!-- 批量逻辑删除  zbb add 2017-03-21 -->
+	<delete id="deleteAllUpd" parameterType="String">
+		update  t_sy_user 
+			set T_SY_DEL_STATUS = '1'
+		where 
+			T_SY_USER_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+	<!-- 批量还原  zbb add 2017-03-21 -->
+	<delete id="restoreAll" parameterType="String">
+		update  t_sy_user 
+			set T_SY_DEL_STATUS = '0'
+		where 
+			T_SY_USER_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+</mapper>

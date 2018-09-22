@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SyIntegralMapper">
+	<sql id="integralColumns">T_SY_INTEGRAL_ID,T_SY_USER_ID,T_SY_INTEGARAL_TYPE,T_SY_INTEGARAL_NUMBER,T_SY_CREATEDATE,T_SY_BZ1,T_SY_BZ2</sql>
+
+	<resultMap type="SyIntegral" id="integralResultMap">
+		<id column="T_SY_INTEGRAL_ID" property="tSyIntegralId"/>
+		<result column="T_SY_USER_ID" property="tSyUserId"/>
+		<result column="T_SY_INTEGARAL_TYPE" property="tSyIntegaralType"/>
+		<result column="T_SY_INTEGARAL_NUMBER" property="tSyIntegaralNumber"/>
+		<result column="T_SY_CREATEDATE" property="tSyCreateDate"/>
+		<result column="T_SY_BZ1" property="tSyBz1"/>
+		<result column="T_SY_BZ2" property="tSyBz2"/>
+	</resultMap>
+
+	<!--查询积分情况 -->
+	<select id="getIntegralList" parameterType="pd" resultType="pd" useCache="false">
+		select * from t_sy_integral 
+		where 1=1
+		<if test="T_SY_USER_ID!=null">
+		and T_SY_USER_ID = #{tSyUserId}  
+		</if>	
+		<if test="T_SY_INTEGARAL_TYPE!=null">
+		and T_SY_INTEGARAL_TYPE=#{tSyIntegaralType} 
+		</if>		
+	</select>	
+	<delete id="deleteByid" parameterType="pd">
+        delete from t_sy_integral where T_SY_INTEGRAL_ID = #{tSyIntegralId} and T_SY_USER_ID = #{tSyUserId}  
+    </delete>
+
+</mapper>
